@@ -22,7 +22,6 @@ namespace Course
 
         public int? ИД_Адреса { get; set; }
 
-        [Required]
         public virtual Адрес Адрес { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

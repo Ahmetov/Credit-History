@@ -47,7 +47,6 @@ namespace Course
 
         public int? ИД_Кредитной_Истории { get; set; }
 
-        [Required]
         public virtual Адрес Адрес { get; set; }
 
         public virtual Кредитная_История Кредитная_История { get; set; }

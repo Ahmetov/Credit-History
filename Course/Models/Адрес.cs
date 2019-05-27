@@ -8,6 +8,13 @@ namespace Course
 
     public partial class Адрес
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Адрес()
+        {
+            Банк = new HashSet<Банк>();
+            Заёмщик = new HashSet<Заёмщик>();
+        }
+
         [Key]
         public int ИД_Адреса { get; set; }
 
@@ -23,8 +30,10 @@ namespace Course
 
         public int? Индекс { get; set; }
 
-        public virtual Банк Банк { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Банк> Банк { get; set; }
 
-        public virtual Заёмщик Заёмщик { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Заёмщик> Заёмщик { get; set; }
     }
 }

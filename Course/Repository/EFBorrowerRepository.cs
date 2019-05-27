@@ -13,23 +13,27 @@ namespace Course.Repository
     {
         private EFDbContext context;
 
+        private DBModel dBModel = DBModelUtil.GetDBModel();
+
         public EFBorrowerRepository()
         {
             //задаём коннекшн из файла WebConfig
-            context = new EFDbContext(ConfigurationManager.ConnectionStrings[2].ConnectionString);
+            //context = new EFDbContext(ConfigurationManager.ConnectionStrings[0].ConnectionString);
+            
         }
 
         public IEnumerable<Заёмщик> GetBorrowers()
         {
-            return context.Заёмщики;
+            return dBModel.Заёмщик;
+            //return context.Заёмщики;
         }
 
         public void saveBorrower(Заёмщик заёмщик)
         {
-            context.Заёмщики.Add(заёмщик);
+            dBModel.Заёмщик.Add(заёмщик);
             try
             {
-                context.SaveChanges();
+                dBModel.SaveChanges(); //Адрес 2 раза не может быть null, exception
             }
             catch (DbEntityValidationException ex)
             {

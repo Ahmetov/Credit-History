@@ -1,0 +1,149 @@
+﻿@model Course.Кредитный_Договор
+
+@{
+    Layout = null;
+}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+    <style>
+        .inp-form {
+            width: 50%;
+            margin: 0 auto;
+            padding-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Создать Кредитный Договор</h1>
+
+    <div class="inp-form shadow rounded">
+        @using (Html.BeginForm())
+        {
+            <fieldset>
+                <legend>Кредитный_Договор</legend>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.ИД_Договора)
+                </div>
+                <div class="editor-label">
+                    @Html.EditorFor(model => model.ИД_Договора, new { htmlAttributes = new { @class = "form-control" }, })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Сумма_Кредита)
+                </div>
+                <div class="editor-label">
+                    @Html.EditorFor(model => model.Сумма_Кредита, new { htmlAttributes = new { @class = "form-control" }, })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Дата_Заключения)
+                </div>
+                <div class="editor-label">
+                    @Html.EditorFor(model => model.Дата_Заключения, new { htmlAttributes = new { @class = "form-control" }, })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Форм_Кредита)
+                </div>
+                <div class="editor-label">
+                    @Html.EditorFor(model => model.Форм_Кредита, new { htmlAttributes = new { @class = "form-control" }, })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Процентная_Ставка)
+                </div>
+                <div class="editor-label">
+                    @Html.EditorFor(model => model.Процентная_Ставка, new { htmlAttributes = new { @class = "form-control" }, })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Дата_Погашения)
+                </div>
+                <div class="editor-label">
+                    @Html.EditorFor(model => model.Дата_Погашения, new { htmlAttributes = new { @class = "form-control" }, })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Произведена_Выплата)
+                </div>
+                <div class="editor-label">
+                    @Html.EditorFor(model => model.Произведена_Выплата, new { htmlAttributes = new { @class = "form-control" }, })
+                </div>
+
+                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+                    Добавить адрес
+                </button>
+
+
+                <!-- Модальное окно -->
+                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4 class="modal-title" id="myModalLabel">Введите адрес</h4>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.адрес.Город)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.EditorFor(model => model.адрес.Город, new { htmlAttributes = new { @class = "form-control" }, })
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.адрес.Улица)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.EditorFor(model => model.адрес.Улица, new { htmlAttributes = new { @class = "form-control" }, })
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.адрес.Номер_Улицы)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.EditorFor(model => model.адрес.Номер_Улицы, new { htmlAttributes = new { @class = "form-control" }, })
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.адрес.Квартира)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.EditorFor(model => model.адрес.Квартира, new { htmlAttributes = new { @class = "form-control" }, })
+                                </div>
+
+                                <div class="editor-label">
+                                    @Html.LabelFor(model => model.адрес.Индекс)
+                                </div>
+                                <div class="editor-label">
+                                    @Html.EditorFor(model => model.адрес.Индекс, new { htmlAttributes = new { @class = "form-control" }, })
+                                </div>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ок</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <p>
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </p>
+            </fieldset>
+        }
+    </div>
+
+
+    
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>

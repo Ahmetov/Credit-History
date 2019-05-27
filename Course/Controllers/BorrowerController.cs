@@ -1,4 +1,5 @@
-﻿using Course.Repository;
+﻿using Course.Models;
+using Course.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,11 +20,15 @@ namespace Course.Controllers
 
         public ActionResult Create()
         {
-            return View(new Заёмщик());
+            ЗаёмщикАдрес заёмщикАдрес =  new ЗаёмщикАдрес();
+
+
+            //return View(new Заёмщик());
+            return View(заёмщикАдрес);
         }
 
         [HttpPost]
-        public ActionResult Create(Заёмщик model)
+        public ActionResult Create(ЗаёмщикАдрес model)
         {
             /*
             if (!TryUpdateModel(model))
@@ -32,7 +37,9 @@ namespace Course.Controllers
             }
             */
 
-            borrowerRepository.saveBorrower(model);
+            
+
+            borrowerRepository.saveBorrower(model.заёмщик);
 
             return Redirect("/Borrower/Show");
         }

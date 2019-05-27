@@ -5,10 +5,10 @@
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
 
-    public partial class DbModel : DbContext
+    public partial class DBModel : DbContext
     {
-        public DbModel()
-            : base("name=DbModel")
+        public DBModel()
+            : base("name=DBModel")
         {
         }
 
@@ -21,21 +21,15 @@
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Банк>()
-                .HasOptional(e => e.Адрес)
-                .WithRequired(e => e.Банк);
-
             modelBuilder.Entity<Заёмщик>()
                 .Property(e => e.Средняя_ЗП)
                 .HasPrecision(19, 4);
-
-            modelBuilder.Entity<Заёмщик>()
-                .HasOptional(e => e.Адрес)
-                .WithRequired(e => e.Заёмщик);
 
             modelBuilder.Entity<Кредитный_Договор>()
                 .Property(e => e.Сумма_Кредита)
                 .HasPrecision(19, 4);
         }
+
+       
     }
 }
