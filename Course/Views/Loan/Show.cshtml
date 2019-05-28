@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Заёмщик>
+﻿@model IEnumerable<Кредитный_Договор>
 
 @{
     Layout = null;
@@ -18,37 +18,25 @@
         <thead>
             <tr>
                 <th>
-                    @Html.DisplayNameFor(model => model.ИД_Заёмщика)
+                    @Html.DisplayNameFor(model => model.ИД_Договора)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Имя)
+                    @Html.DisplayNameFor(model => model.Сумма_Кредита)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Фамилия)
+                    @Html.DisplayNameFor(model => model.Дата_Заключения)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Отчество)
+                    @Html.DisplayNameFor(model => model.Форм_Кредита)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Телефон)
+                    @Html.DisplayNameFor(model => model.Процентная_Ставка)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Возраст)
+                    @Html.DisplayNameFor(model => model.Дата_Погашения)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Средняя_ЗП)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Номер_Паспорта)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Серия_Паспорта)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Кем_Выдан_Паспорт)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Дата_Выдачи)
+                    @Html.DisplayNameFor(model => model.Произведена_Выплата)
                 </th>
             </tr>
         </thead>
@@ -57,39 +45,26 @@
             {
             <tr>
                 <th scope="row">
-                    @Html.DisplayFor(modelItem => item.ИД_Заёмщика)
+                    @Html.DisplayFor(modelItem => item.ИД_Договора)
                 </th>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Имя)
+                    @Html.DisplayFor(modelItem => item.Сумма_Кредита)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Фамилия)
+                    @item.Дата_Заключения.Value.ToShortDateString()
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Отчество)
+                    @Html.DisplayFor(modelItem => item.Форм_Кредита)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Телефон)
+                    @Html.DisplayFor(modelItem => item.Процентная_Ставка)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Возраст)
+                    @item.Дата_Погашения.Value.ToShortDateString()
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Средняя_ЗП)
+                    @Html.DisplayFor(modelItem => item.Произведена_Выплата)
                 </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Номер_Паспорта)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Серия_Паспорта)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Кем_Выдан_Паспорт)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Дата_Выдачи)
-                </td>
-
             </tr>
             }
         </tbody>

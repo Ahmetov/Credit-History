@@ -175,6 +175,7 @@
     <Compile Include="Repository\EFBankRepository.cs" />
     <Compile Include="Repository\EFBorrowerRepository.cs" />
     <Compile Include="Models\sysdiagrams.cs" />
+    <Compile Include="Repository\EFLoanRepository.cs" />
     <Compile Include="Util\DBModelUtil.cs" />
     <Compile Include="Util\EFDbContext.cs" />
     <Compile Include="Models\Адрес.cs" />

@@ -23,6 +23,7 @@ namespace Course
         public float? Процентная_Ставка { get; set; }
 
         [Column(TypeName = "date")]
+        [DataType(DataType.Date)]
         public DateTime? Дата_Погашения { get; set; }
 
         public bool? Произведена_Выплата { get; set; }
