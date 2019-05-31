@@ -9,31 +9,10 @@ namespace Course.Controllers
 {
     public class HomeController : Controller
     {
-        EFBorrowerRepository borrowerRepository = new EFBorrowerRepository();
-
         public ActionResult Index()
         {
             
-            return View(borrowerRepository.GetBorrowers());
+            return View();
         }
-
-        public ActionResult Create()
-        {
-            return View(new Заёмщик());
-        }
-
-        [HttpPost]
-        public ActionResult Create(Заёмщик model)
-        {
-            if (!TryUpdateModel(model))
-            {
-                return View(model);
-            }
-
-            borrowerRepository.saveBorrower(model);
-
-            return View("Index", model);
-        }
-
     }
 }

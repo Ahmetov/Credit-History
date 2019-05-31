@@ -26,132 +26,68 @@
             <fieldset>
                 <legend>Заёмщик</legend>
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.заёмщик.Имя)
+                    @Html.LabelFor(model => model.Количество_Счетов)
                 </div>
                 <div class="editor-label">
-                    @Html.EditorFor(model => model.заёмщик.Имя, new { htmlAttributes = new { @class = "form-control" }, })
+                    @Html.EditorFor(model => model.Количество_Счетов, new { htmlAttributes = new { @class = "form-control" }, })
                 </div>
 
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.заёмщик.Фамилия)
+                    @Html.LabelFor(model => model.Закрытые_Счета)
                 </div>
                 <div class="editor-label">
-                    @Html.EditorFor(model => model.заёмщик.Фамилия, new { htmlAttributes = new { @class = "form-control" }, })
+                    @Html.EditorFor(model => model.Закрытые_Счета, new { htmlAttributes = new { @class = "form-control" }, })
                 </div>
 
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.заёмщик.Отчество)
+                    @Html.LabelFor(model => model.Открытые_Счета)
                 </div>
                 <div class="editor-label">
-                    @Html.EditorFor(model => model.заёмщик.Отчество, new { htmlAttributes = new { @class = "form-control" }, })
+                    @Html.EditorFor(model => model.Открытые_Счета, new { htmlAttributes = new { @class = "form-control" }, })
                 </div>
 
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.заёмщик.Телефон)
+                    @Html.LabelFor(model => model.Открыт_Последний)
                 </div>
                 <div class="editor-label">
-                    @Html.EditorFor(model => model.заёмщик.Телефон, new { htmlAttributes = new { @class = "form-control" }, })
+                    @Html.EditorFor(model => model.Открыт_Последний, new { htmlAttributes = new { @class = "form-control", @type = "date" }, })
                 </div>
 
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.заёмщик.Возраст)
+                    @Html.LabelFor(model => model.Открыт_Первый)
                 </div>
                 <div class="editor-label">
-                    @Html.EditorFor(model => model.заёмщик.Возраст, new { htmlAttributes = new { @class = "form-control" }, })
-                </div>
-
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.заёмщик.Средняя_ЗП)
-                </div>
-                <div class="editor-label">
-                    @Html.EditorFor(model => model.заёмщик.Средняя_ЗП, new { htmlAttributes = new { @class = "form-control" }, })
+                    @Html.EditorFor(model => model.Открыт_Первый, new { htmlAttributes = new { @class = "form-control", @type = "date" }, })
                 </div>
 
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.заёмщик.Номер_Паспорта)
+                    @Html.LabelFor(model => model.Количество_Заявок)
                 </div>
                 <div class="editor-label">
-                    @Html.EditorFor(model => model.заёмщик.Номер_Паспорта, new { htmlAttributes = new { @class = "form-control" }, })
-                </div>
-
-                <div class="editor-label">
-                    @Html.LabelFor(model => model.заёмщик.Серия_Паспорта)
-                </div>
-                <div class="editor-label">
-                    @Html.EditorFor(model => model.заёмщик.Серия_Паспорта, new { htmlAttributes = new { @class = "form-control" }, })
+                    @Html.EditorFor(model => model.Количество_Заявок, new { htmlAttributes = new { @class = "form-control" }, })
                 </div>
 
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.заёмщик.Кем_Выдан_Паспорт)
+                    @Html.LabelFor(model => model.Последний_Запрос)
                 </div>
                 <div class="editor-label">
-                    @Html.EditorFor(model => model.заёмщик.Кем_Выдан_Паспорт, new { htmlAttributes = new { @class = "form-control" }, })
+                    @Html.EditorFor(model => model.Последний_Запрос, new { htmlAttributes = new { @class = "form-control", @type = "date" }, })
                 </div>
 
                 <div class="editor-label">
-                    @Html.LabelFor(model => model.заёмщик.Дата_Выдачи)
+                    @Html.LabelFor(model => model.Отказы_В_Кредите)
                 </div>
                 <div class="editor-label">
-                    @Html.EditorFor(model => model.заёмщик.Дата_Выдачи, new { htmlAttributes = new { @class = "form-control" }, })
+                    @Html.EditorFor(model => model.Отказы_В_Кредите, new { htmlAttributes = new { @class = "form-control" }, })
                 </div>
-                <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-                    Добавить адрес
-                </button>
 
-
-                <!-- Модальное окно -->
-                <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="myModalLabel">Введите адрес</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="editor-label">
-                                    @Html.LabelFor(model => model.адрес.Город)
-                                </div>
-                                <div class="editor-label">
-                                    @Html.EditorFor(model => model.адрес.Город, new { htmlAttributes = new { @class = "form-control" }, })
-                                </div>
-
-                                <div class="editor-label">
-                                    @Html.LabelFor(model => model.адрес.Улица)
-                                </div>
-                                <div class="editor-label">
-                                    @Html.EditorFor(model => model.адрес.Улица, new { htmlAttributes = new { @class = "form-control" }, })
-                                </div>
-
-                                <div class="editor-label">
-                                    @Html.LabelFor(model => model.адрес.Номер_Улицы)
-                                </div>
-                                <div class="editor-label">
-                                    @Html.EditorFor(model => model.адрес.Номер_Улицы, new { htmlAttributes = new { @class = "form-control" }, })
-                                </div>
-
-                                <div class="editor-label">
-                                    @Html.LabelFor(model => model.адрес.Квартира)
-                                </div>
-                                <div class="editor-label">
-                                    @Html.EditorFor(model => model.адрес.Квартира, new { htmlAttributes = new { @class = "form-control" }, })
-                                </div>
-
-                                <div class="editor-label">
-                                    @Html.LabelFor(model => model.адрес.Индекс)
-                                </div>
-                                <div class="editor-label">
-                                    @Html.EditorFor(model => model.адрес.Индекс, new { htmlAttributes = new { @class = "form-control" }, })
-                                </div>
-
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Ок</button>
-                            </div>
-                        </div>
-                    </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Одобренные_Кредиты)
                 </div>
+                <div class="editor-label">
+                    @Html.EditorFor(model => model.Одобренные_Кредиты, new { htmlAttributes = new { @class = "form-control" }, })
+                </div>
+
                 <p>
                     <input type="submit" value="Create" class="btn btn-primary" />
                 </p>
@@ -159,8 +95,10 @@
         }
     </div>
 
+    <a href="../History/Show" class="btn btn-info">Назад</a>
 
-    
+
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

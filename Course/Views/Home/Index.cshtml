@@ -1,6 +1,4 @@
-﻿@model IEnumerable<Заёмщик>
-
-@{
+﻿@{
     Layout = null;
 }
 
@@ -12,88 +10,29 @@
 
 </head>
 <body>
-    <h1>БЛЯЯЯТЬ!</h1>
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #485e52">
+        <div class="collapse navbar-collapse" id="navbar1">
+            <ul class="nav nav-pills flex-column flex-sm-row sticky-top justify-content-around">
+                <li class="nav-item">
+                    <a class="nav-link text-sm-center flex-sm p-3 mb-2 text-white nav-bar-text-user" href="/Home/Index">Главная</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-sm-center flex-sm p-3 mb-2 text-white nav-bar-text-user" href="/Borrower/Show">Заёмщики</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-sm-center flex-sm p-3 mb-2 text-white nav-bar-text-user" href="/Bank/Show">Банки</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-sm-center flex-sm p-3 mb-2 text-white nav-bar-text-user" href="/Loan/Show">Кредитные договоры</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-sm-center flex-sm p-3 mb-2 text-white nav-bar-text-user" href="/History/Show">Кредитные истории</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    @Html.DisplayNameFor(model => model.ИД_Заёмщика)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Имя)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Фамилия)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Отчество)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Телефон)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Возраст)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Средняя_ЗП)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Номер_Паспорта)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Серия_Паспорта)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Кем_Выдан_Паспорт)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Дата_Выдачи)
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (var item in Model)
-            {
-            <tr>
-                <th scope="row">
-                    @Html.DisplayFor(modelItem => item.ИД_Заёмщика)
-                </th>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Имя)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Фамилия)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Отчество)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Телефон)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Возраст)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Средняя_ЗП)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Номер_Паспорта)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Серия_Паспорта)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Кем_Выдан_Паспорт)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Дата_Выдачи)
-                </td>
 
-            </tr>
-            }
-        </tbody>
-    </table>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

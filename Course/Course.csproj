@@ -158,6 +158,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BankController.cs" />
     <Compile Include="Controllers\BorrowerController.cs" />
+    <Compile Include="Controllers\HistoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoanController.cs" />
     <Compile Include="Models\DBModel.cs" />
@@ -175,6 +176,7 @@
     <Compile Include="Repository\EFBankRepository.cs" />
     <Compile Include="Repository\EFBorrowerRepository.cs" />
     <Compile Include="Models\sysdiagrams.cs" />
+    <Compile Include="Repository\EFHistoryRepositroy.cs" />
     <Compile Include="Repository\EFLoanRepository.cs" />
     <Compile Include="Util\DBModelUtil.cs" />
     <Compile Include="Util\EFDbContext.cs" />
@@ -229,8 +231,8 @@
     <Content Include="Views\Borrower\Create.cshtml" />
     <Content Include="Views\Bank\Create.cshtml" />
     <Content Include="Views\Bank\Show.cshtml" />
-    <Content Include="Views\CreditHistory\Create.cshtml" />
-    <Content Include="Views\CreditHistory\Show.cshtml" />
+    <Content Include="Views\History\Create.cshtml" />
+    <Content Include="Views\History\Show.cshtml" />
     <Content Include="Views\Loan\Show.cshtml" />
     <Content Include="Views\Loan\Create.cshtml" />
   </ItemGroup>
