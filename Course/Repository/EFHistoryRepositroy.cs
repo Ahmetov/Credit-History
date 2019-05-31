@@ -16,6 +16,15 @@ namespace Course.Repository
             return model.Кредитная_История;
         }
 
+        public Кредитная_История findHistoryByPassport(int ser, int num)
+        {
+            Заёмщик заёмщик = model.Заёмщик.Where(o => o.Номер_Паспорта == num && o.Серия_Паспорта == ser).FirstOrDefault();
+
+            Кредитная_История история = model.Кредитная_История.Where(o => o.Заёмщик == заёмщик).FirstOrDefault();
+
+            return история;
+        }
+
         public bool deleteHistoryById(int id)
         {
             Кредитная_История история = model.Кредитная_История.Where(o => o.ИД_Кредитной_Истории == id).FirstOrDefault();

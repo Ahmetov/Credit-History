@@ -18,13 +18,11 @@
     </style>
 </head>
 <body>
-    <h1>Создать заёмщика</h1>
-
     <div class="inp-form shadow rounded">
         @using (Html.BeginForm())
         {
             <fieldset>
-                <legend>Заёмщик</legend>
+                <legend>Создать заёмщика</legend>
                 <div class="editor-label">
                     @Html.LabelFor(model => model.заёмщик.Имя)
                 </div>

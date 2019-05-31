@@ -235,6 +235,7 @@
     <Content Include="Views\History\Show.cshtml" />
     <Content Include="Views\Loan\Show.cshtml" />
     <Content Include="Views\Loan\Create.cshtml" />
+    <Content Include="Views\Home\Find.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

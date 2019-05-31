@@ -18,13 +18,12 @@
     </style>
 </head>
 <body>
-    <h1>Создать Кредитный Договор</h1>
 
     <div class="inp-form shadow rounded">
         @using (Html.BeginForm())
         {
             <fieldset>
-                <legend>Кредитный_Договор</legend>
+                <legend>Создать кредитный договор</legend>
                 <div class="editor-label">
                     @Html.LabelFor(model => model.Сумма_Кредита)
                 </div>
@@ -50,7 +49,7 @@
                     @Html.LabelFor(model => model.Процентная_Ставка)
                 </div>
                 <div class="editor-label">
-                    @Html.EditorFor(model => model.Процентная_Ставка, new { htmlAttributes = new { @class = "form-control" }, })
+                    @Html.EditorFor(model => model.Процентная_Ставка, new { htmlAttributes = new { @class = "form-control", @type = "number", @step = 0.01 }, })
                 </div>
 
                 <div class="editor-label">
