@@ -50,7 +50,7 @@ namespace Course.Controllers
                 return HttpNotFound();
             }
 
-            return RedirectToAction("/Show");
+            return RedirectToAction("/Loan/Show");
         }
 
         [HttpPost, ActionName("Delete")]
@@ -58,7 +58,7 @@ namespace Course.Controllers
         public ActionResult Delete(int id)//int id)
         {
             loanRepository.deleteLoanById(id);
-            return Redirect("/Bank/Show");
+            return Redirect("/Loan/Show");
         }
     }
 }

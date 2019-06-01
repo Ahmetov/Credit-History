@@ -16,11 +16,17 @@ namespace Course.Repository
             return model.Кредитная_История;
         }
 
-        public Кредитная_История findHistoryByPassport(int ser, int num)
+        public Кредитная_История findHistoryByPassport(int pass)
         {
+            string stringSer = pass.ToString().Substring(0, 4);
+            string stringNum = pass.ToString().Substring(4);
+
+            int ser = int.Parse(stringSer) ;
+            int num = int.Parse(stringNum);
+
             Заёмщик заёмщик = model.Заёмщик.Where(o => o.Номер_Паспорта == num && o.Серия_Паспорта == ser).FirstOrDefault();
 
-            Кредитная_История история = model.Кредитная_История.Where(o => o.Заёмщик == заёмщик).FirstOrDefault();
+            Кредитная_История история = model.Кредитная_История.Where(o => o.Заёмщик == заёмщик).FirstOrDefault(); //наверно equals и hashCode переопределить надо, а то пиздит
 
             return история;
         }

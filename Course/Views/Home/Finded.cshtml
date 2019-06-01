@@ -1,4 +1,7 @@
-﻿@{
+﻿@model IEnumerable<Кредитная_История>
+
+
+@{
     Layout = null;
 }
 
@@ -32,11 +35,7 @@
         </div>
     </nav>
 
-    @using (@Html.BeginForm("Find", "Home"))
-    {   
-        @Html.TextBox("id", "", new { style = "width:100%" })
-        <input type="submit" value="Send" />
-    }
+    
 
 
 

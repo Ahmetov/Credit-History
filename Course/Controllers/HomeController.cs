@@ -10,6 +10,8 @@ namespace Course.Controllers
 {
     public class HomeController : Controller
     {
+        EFHistoryRepositroy repositroy = new EFHistoryRepositroy();
+
         public ActionResult Index()
         {
             return View();
@@ -29,7 +31,19 @@ namespace Course.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            return View("/");
+            return Redirect("/Home/Finded/" + id);
         }
+
+        public ActionResult Finded(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            return View(repositroy.findHistoryByPassport(id.Value));
+        }
+
+
     }
 }
