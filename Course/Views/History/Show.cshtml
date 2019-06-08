@@ -76,38 +76,45 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <th scope="row">
-                        @Html.DisplayFor(modelItem => item.ИД_Кредитной_Истории)
-                    </th>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Количество_Счетов)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Закрытые_Счета)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Открытые_Счета)
-                    </td>
-                    <td>
-                        @item.Открыт_Последний.Value.ToShortDateString()
-                    </td>
-                    <td>
-                        @item.Открыт_Первый.Value.ToShortDateString()
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Количество_Заявок)
-                    </td>
-                    <td>
-                        @item.Последний_Запрос.Value.ToShortDateString()
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Отказы_В_Кредите)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Одобренные_Кредиты)
-                    </td>
-                </tr>
+            <tr>
+                <th scope="row">
+                    @Html.DisplayFor(modelItem => item.ИД_Кредитной_Истории)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Количество_Счетов)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Закрытые_Счета)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Открытые_Счета)
+                </td>
+                <td>
+                    @item.Открыт_Последний.Value.ToShortDateString()
+                </td>
+                <td>
+                    @item.Открыт_Первый.Value.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Количество_Заявок)
+                </td>
+                <td>
+                    @item.Последний_Запрос.Value.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Отказы_В_Кредите)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Одобренные_Кредиты)
+                </td>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="../History/Delete/@item.ИД_Кредитной_Истории" class="btn btn-danger">Удалить</a>
+                    }
+                </td>
+            </tr>
             }
         </tbody>
     </table>

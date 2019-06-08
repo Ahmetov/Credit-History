@@ -90,7 +90,7 @@
                     @Html.LabelFor(model => model.заёмщик.Дата_Выдачи)
                 </div>
                 <div class="editor-label">
-                    @Html.EditorFor(model => model.заёмщик.Дата_Выдачи, new { htmlAttributes = new { @class = "form-control" }, })
+                    @Html.EditorFor(model => model.заёмщик.Дата_Выдачи, new { htmlAttributes = new { @class = "form-control", @type = "date" }, })
                 </div>
                 <button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
                     Добавить адрес

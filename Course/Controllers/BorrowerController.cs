@@ -3,6 +3,7 @@ using Course.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -30,17 +31,30 @@ namespace Course.Controllers
         [HttpPost]
         public ActionResult Create(ЗаёмщикАдрес model)
         {
-            /*
-            if (!TryUpdateModel(model))
-            {
-                return View(model);
-            }
-            */
-
-            
-
             borrowerRepository.saveBorrower(model.заёмщик);
+            return Redirect("/Borrower/Show");
+        }
 
+        public ActionResult Delete(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            if (!borrowerRepository.deleteBorrowerById(id.Value))
+            {
+                return HttpNotFound();
+            }
+
+            return RedirectToAction("/Show");
+        }
+
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)//int id)
+        {
+            borrowerRepository.deleteBorrowerById(id);
             return Redirect("/Borrower/Show");
         }
     }

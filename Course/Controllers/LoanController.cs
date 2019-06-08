@@ -1,4 +1,5 @@
-﻿using Course.Repository;
+﻿using Course.Models.Util;
+using Course.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,9 @@ namespace Course.Controllers
     public class LoanController : Controller
     {
         EFLoanRepository loanRepository = new EFLoanRepository();
+
+        EFBorrowerRepository borrowerRepository = new EFBorrowerRepository();
+
         // GET: Loan
         public ActionResult Index()
         {
@@ -24,7 +28,12 @@ namespace Course.Controllers
 
         public ActionResult Create()
         {
+            DropDownBorrower dropDown = new DropDownBorrower();
+
+            List<SelectListItem> listItems = new List<SelectListItem>();
+
             Кредитный_Договор договор = new Кредитный_Договор();
+            ViewBag.DropDownValues = new SelectList(borrowerRepository.GetBorrowers());
 
             return View(договор);
         }

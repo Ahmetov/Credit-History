@@ -79,42 +79,48 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <th scope="row">
-                        @Html.DisplayFor(modelItem => item.ИД_Заёмщика)
-                    </th>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Имя)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Фамилия)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Отчество)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Телефон)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Возраст)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Средняя_ЗП)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Номер_Паспорта)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Серия_Паспорта)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Кем_Выдан_Паспорт)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Дата_Выдачи)
-                    </td>
-
-                </tr>
+            <tr>
+                <th scope="row">
+                    @Html.DisplayFor(modelItem => item.ИД_Заёмщика)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Имя)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Фамилия)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Отчество)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Телефон)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Возраст)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Средняя_ЗП)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Номер_Паспорта)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Серия_Паспорта)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Кем_Выдан_Паспорт)
+                </td>
+                <td>
+                    @item.Дата_Выдачи.Value.ToShortDateString()
+                </td>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="../Borrower/Delete/@item.ИД_Заёмщика" class="btn btn-danger">Удалить</a>
+                    }
+                </td>
+            </tr>
             }
         </tbody>
     </table>

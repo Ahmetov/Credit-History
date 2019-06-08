@@ -67,29 +67,36 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <th scope="row">
-                        @Html.DisplayFor(modelItem => item.ИД_Договора)
-                    </th>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Сумма_Кредита)
-                    </td>
-                    <td>
-                        @item.Дата_Заключения.Value.ToShortDateString()
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Форм_Кредита)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Процентная_Ставка)
-                    </td>
-                    <td>
-                        @item.Дата_Погашения.Value.ToShortDateString()
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Произведена_Выплата)
-                    </td>
-                </tr>
+            <tr>
+                <th scope="row">
+                    @Html.DisplayFor(modelItem => item.ИД_Договора)
+                </th>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Сумма_Кредита)
+                </td>
+                <td>
+                    @item.Дата_Заключения.Value.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Форм_Кредита)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Процентная_Ставка)
+                </td>
+                <td>
+                    @item.Дата_Погашения.Value.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Произведена_Выплата)
+                </td>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="../Loan/Delete/@item.ИД_Договора" class="btn btn-danger">Удалить</a>
+                    }
+                </td>
+            </tr>
             }
         </tbody>
     </table>

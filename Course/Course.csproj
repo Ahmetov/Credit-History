@@ -165,8 +165,11 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\БанкАдрес.cs" />
-    <Compile Include="Models\ЗаёмщикАдрес.cs" />
+    <Compile Include="Models\Util\DropDownBorrower.cs" />
+    <Compile Include="Models\Util\БанкАдрес.cs" />
+    <Compile Include="Models\Util\ЗаёмщикАдрес.cs" />
+    <Compile Include="Models\Пользователи.cs" />
+    <Compile Include="Models\ЗаёмщикДоговоры.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>

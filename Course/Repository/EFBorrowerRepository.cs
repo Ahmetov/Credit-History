@@ -50,6 +50,32 @@ namespace Course.Repository
 
         }
 
+        public bool deleteBorrowerById(int id)
+        {
+            Заёмщик заёмщик = dBModel.Заёмщик.Where(o => o.ИД_Заёмщика == id).FirstOrDefault();
+            //dBModel.Банк.Attach(банк);
+            dBModel.Заёмщик.Remove(заёмщик);
+            try
+            {
+                dBModel.SaveChanges(); //Адрес 2 раза не может быть null, exception
+                return true;
+            }
+
+            catch (DbEntityValidationException ex)
+            {
+                foreach (DbEntityValidationResult validationError in ex.EntityValidationErrors)
+                {
+                    Trace.Write("Object: " + validationError.Entry.Entity.ToString());
+                    Trace.Write("");
+                    foreach (DbValidationError err in validationError.ValidationErrors)
+                    {
+                        Trace.Write(err.ErrorMessage + "");
+                    }
+                }
+                return false;
+            }
+        }
+
         public Заёмщик GetBoorrowerById(int id)
         {
             return context.Заёмщики.FirstOrDefault(x => x.ИД_Заёмщика == id);
