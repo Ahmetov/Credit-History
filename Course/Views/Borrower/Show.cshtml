@@ -74,6 +74,15 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Дата_Выдачи)
                 </th>
+                <th>
+                    ИД Кредитной истории
+                </th>
+                <th>
+
+                </th>
+                <th>
+
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -113,11 +122,21 @@
                 <td>
                     @item.Дата_Выдачи.Value.ToShortDateString()
                 </td>
+                <th>
+                    @item.ИД_Кредитной_Истории
+                </th>
                 <td>
                     @using (Html.BeginForm())
                     {
                         @Html.AntiForgeryToken()
                         <a href="../Borrower/Delete/@item.ИД_Заёмщика" class="btn btn-danger">Удалить</a>
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="../Borrower/Update/@item.ИД_Заёмщика" class="btn btn-warning">Обновить</a>
                     }
                 </td>
             </tr>

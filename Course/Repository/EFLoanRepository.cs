@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
@@ -35,7 +36,18 @@ namespace Course.Repository
                     }
                 }
             }
+        }
 
+        public Кредитный_Договор findLoanById(int id)
+        {
+            Кредитный_Договор договор = dBModel.Кредитный_Договор.Where(o => o.ИД_Договора == id).FirstOrDefault();
+            return договор;
+        }
+
+        public void update(Кредитный_Договор договор)
+        {
+            dBModel.Entry(договор).State = EntityState.Modified;
+            dBModel.SaveChanges();
         }
 
         public bool deleteLoanById(int id)

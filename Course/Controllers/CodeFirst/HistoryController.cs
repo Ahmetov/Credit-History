@@ -11,12 +11,13 @@ namespace Course.Controllers
     public class HistoryController : Controller
     {
         EFHistoryRepositroy repository = new EFHistoryRepositroy();
-
+        EFBorrowerRepository borrowerRepository = new EFBorrowerRepository();
 
 
         public ActionResult Create()
         {
             Кредитная_История история = new Кредитная_История();
+            ViewBag.BorrowersDrop = borrowerRepository.GetBorrowers().Select(x => new SelectListItem { Text = (x.ИД_Заёмщика.ToString() + " " + x.Имя + " " + x.Фамилия), Value = x.ИД_Заёмщика.ToString() });
 
             return View(история);
         }
@@ -26,12 +27,30 @@ namespace Course.Controllers
             return View(repository.GetHistories());
         }
 
+        public ActionResult Update(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            //ViewBag.BorrowersDrop = borrowerRepository.GetBorrowers().Select(x => new SelectListItem { Text = (x.ИД_Заёмщика.ToString() + " " + x.Имя + " " + x.Фамилия), Value = x.ИД_Заёмщика.ToString() });
+
+            Кредитная_История история = repository.findHistoryById(id.Value);
+            
+            return View(история);
+        }
+
+        [HttpPost]
+        public ActionResult Update(Кредитная_История model)
+        {
+            repository.update(model);
+            return Redirect("/Loan/Show");
+        }
+
         [HttpPost]
         public ActionResult Create(Кредитная_История model)
         {
-
-            
-
             repository.saveHistory(model);
 
             return Redirect("/History/Show");
@@ -49,7 +68,7 @@ namespace Course.Controllers
                 return HttpNotFound();
             }
 
-            return RedirectToAction("/History/Show");
+            return RedirectToAction("/Show");
         }
 
         [HttpPost, ActionName("Delete")]
@@ -57,7 +76,7 @@ namespace Course.Controllers
         public ActionResult Delete(int id)//int id)
         {
             repository.deleteHistoryById(id);
-            return Redirect("/History/Show");
+            return Redirect("/Show");
         }
     }
 }

@@ -1,7 +1,9 @@
-﻿using Course.Util;
+﻿using Course.Models;
+using Course.Util;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
@@ -11,21 +13,16 @@ namespace Course.Repository
 {
     public class EFBorrowerRepository
     {
-        private EFDbContext context;
-
-        private DBModel dBModel = DBModelUtil.GetDBModel();
+        private DBModel dBModel = new DBModel();
 
         public EFBorrowerRepository()
         {
-            //задаём коннекшн из файла WebConfig
-            //context = new EFDbContext(ConfigurationManager.ConnectionStrings[0].ConnectionString);
             
         }
 
         public IEnumerable<Заёмщик> GetBorrowers()
         {
             return dBModel.Заёмщик;
-            //return context.Заёмщики;
         }
 
         public void saveBorrower(Заёмщик заёмщик)
@@ -33,7 +30,9 @@ namespace Course.Repository
             dBModel.Заёмщик.Add(заёмщик);
             try
             {
-                dBModel.SaveChanges(); //Адрес 2 раза не может быть null, exception
+                dBModel.SaveChanges();
+                if (заёмщик.ИД_Кредитной_Истории != null)
+                    dBModel.setQuanity(заёмщик.ИД_Заёмщика);
             }
             catch (DbEntityValidationException ex)
             {
@@ -53,11 +52,10 @@ namespace Course.Repository
         public bool deleteBorrowerById(int id)
         {
             Заёмщик заёмщик = dBModel.Заёмщик.Where(o => o.ИД_Заёмщика == id).FirstOrDefault();
-            //dBModel.Банк.Attach(банк);
             dBModel.Заёмщик.Remove(заёмщик);
             try
             {
-                dBModel.SaveChanges(); //Адрес 2 раза не может быть null, exception
+                dBModel.SaveChanges();
                 return true;
             }
 
@@ -76,9 +74,20 @@ namespace Course.Repository
             }
         }
 
+        public void update(ЗаёмщикАдрес заёмщикАдрес)
+        {
+            if(заёмщикАдрес.заёмщик.ИД_Кредитной_Истории != null)
+                dBModel.setQuanity(заёмщикАдрес.заёмщик.ИД_Заёмщика);
+
+            dBModel.Entry(заёмщикАдрес.адрес).State = EntityState.Modified;
+            dBModel.Entry(заёмщикАдрес.заёмщик).State = EntityState.Modified;
+            dBModel.SaveChanges();
+        }
+
         public Заёмщик GetBoorrowerById(int id)
         {
-            return context.Заёмщики.FirstOrDefault(x => x.ИД_Заёмщика == id);
+                Заёмщик заёмщик = dBModel.Заёмщик.Where(x => x.ИД_Заёмщика == id).FirstOrDefault();
+                return заёмщик;
         }
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
 using System.Linq;
@@ -18,15 +19,22 @@ namespace Course.Repository
 
         public Кредитная_История findHistoryByPassport(int pass)
         {
+            if (pass.ToString().Length != 10)
+                return null;
+
             string stringSer = pass.ToString().Substring(0, 4);
             string stringNum = pass.ToString().Substring(4);
 
-            int ser = int.Parse(stringSer) ;
-            int num = int.Parse(stringNum);
+            int num = int.Parse(stringSer) ;
+            int ser = int.Parse(stringNum);
 
             Заёмщик заёмщик = model.Заёмщик.Where(o => o.Номер_Паспорта == num && o.Серия_Паспорта == ser).FirstOrDefault();
+            if (заёмщик == null)
+                return null;
 
-            Кредитная_История история = model.Кредитная_История.Where(o => o.Заёмщик == заёмщик).FirstOrDefault(); //наверно equals и hashCode переопределить надо, а то пиздит
+            Кредитная_История история = model.Кредитная_История.Where(o => o.ИД_Кредитной_Истории == заёмщик.ИД_Кредитной_Истории).FirstOrDefault();
+            if (история == null)
+                return null;
 
             return история;
         }
@@ -34,11 +42,11 @@ namespace Course.Repository
         public bool deleteHistoryById(int id)
         {
             Кредитная_История история = model.Кредитная_История.Where(o => o.ИД_Кредитной_Истории == id).FirstOrDefault();
-            //dBModel.Банк.Attach(банк);
+            
             model.Кредитная_История.Remove(история);
             try
             {
-                model.SaveChanges(); //Адрес 2 раза не может быть null, exception
+                model.SaveChanges(); 
                 return true;
             }
 
@@ -55,6 +63,18 @@ namespace Course.Repository
                 }
                 return false;
             }
+        }
+
+        public Кредитная_История findHistoryById(int id)
+        {
+            Кредитная_История история = model.Кредитная_История.Where(o => o.ИД_Кредитной_Истории == id).FirstOrDefault();
+            return история;
+        }
+
+        public void update(Кредитная_История история)
+        {
+            model.Entry(история).State = EntityState.Modified;
+            model.SaveChanges();
         }
 
         public void saveHistory(Кредитная_История история)

@@ -15,7 +15,8 @@ namespace Course.Controllers
 
         EFBorrowerRepository borrowerRepository = new EFBorrowerRepository();
 
-        // GET: Loan
+        EFBankRepository bankRepository = new EFBankRepository();
+
         public ActionResult Index()
         {
             return View();
@@ -33,7 +34,8 @@ namespace Course.Controllers
             List<SelectListItem> listItems = new List<SelectListItem>();
 
             Кредитный_Договор договор = new Кредитный_Договор();
-            ViewBag.DropDownValues = new SelectList(borrowerRepository.GetBorrowers());
+            ViewBag.BorrowersDrop = borrowerRepository.GetBorrowers().Select(x => new SelectListItem { Text = (x.ИД_Заёмщика.ToString() + " " + x.Имя + " " + x.Фамилия), Value = x.ИД_Заёмщика.ToString()});
+            ViewBag.BankDrop = bankRepository.GetBanks().Select(x => new SelectListItem { Text = (x.ИД_Банка.ToString() + " " + x.Название.ToString()), Value = x.ИД_Банка.ToString()});
 
             return View(договор);
         }
@@ -41,9 +43,30 @@ namespace Course.Controllers
         [HttpPost]
         public ActionResult Create(Кредитный_Договор model)
         {
-
             loanRepository.saveLoan(model);
 
+            return Redirect("/Loan/Show");
+        }
+
+        public ActionResult Update(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            ViewBag.BorrowersDrop = borrowerRepository.GetBorrowers().Select(x => new SelectListItem { Text = (x.ИД_Заёмщика.ToString() + " " + x.Имя + " " + x.Фамилия), Value = x.ИД_Заёмщика.ToString() });
+            ViewBag.BankDrop = bankRepository.GetBanks().Select(x => new SelectListItem { Text = (x.ИД_Банка.ToString() + " " + x.Название.ToString()), Value = x.ИД_Банка.ToString() });
+
+            Кредитный_Договор договор = loanRepository.findLoanById(id.Value);
+            
+            return View(договор);
+        }
+
+        [HttpPost]
+        public ActionResult Update(Кредитный_Договор model)
+        {
+            loanRepository.update(model);
             return Redirect("/Loan/Show");
         }
 
@@ -59,7 +82,7 @@ namespace Course.Controllers
                 return HttpNotFound();
             }
 
-            return RedirectToAction("/Loan/Show");
+            return RedirectToAction("/Show");
         }
 
         [HttpPost, ActionName("Delete")]
@@ -67,7 +90,7 @@ namespace Course.Controllers
         public ActionResult Delete(int id)//int id)
         {
             loanRepository.deleteLoanById(id);
-            return Redirect("/Loan/Show");
+            return Redirect("/Show");
         }
     }
 }

@@ -156,20 +156,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BankController.cs" />
-    <Compile Include="Controllers\BorrowerController.cs" />
-    <Compile Include="Controllers\HistoryController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\LoanController.cs" />
-    <Compile Include="Models\DBModel.cs" />
+    <Compile Include="Controllers\CodeFirst\BankController.cs" />
+    <Compile Include="Controllers\CodeFirst\BorrowerController.cs" />
+    <Compile Include="Controllers\CodeFirst\HistoryController.cs" />
+    <Compile Include="Controllers\CodeFirst\HomeController.cs" />
+    <Compile Include="Controllers\CodeFirst\LoanController.cs" />
+    <Compile Include="Models\Entities\DBModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Util\DropDownBorrower.cs" />
     <Compile Include="Models\Util\БанкАдрес.cs" />
     <Compile Include="Models\Util\ЗаёмщикАдрес.cs" />
-    <Compile Include="Models\Пользователи.cs" />
-    <Compile Include="Models\ЗаёмщикДоговоры.cs" />
+    <Compile Include="Models\Util\ЗаёмщикДоговоры.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -178,16 +177,16 @@
     </Compile>
     <Compile Include="Repository\EFBankRepository.cs" />
     <Compile Include="Repository\EFBorrowerRepository.cs" />
-    <Compile Include="Models\sysdiagrams.cs" />
+    <Compile Include="Models\Entities\sysdiagrams.cs" />
     <Compile Include="Repository\EFHistoryRepositroy.cs" />
     <Compile Include="Repository\EFLoanRepository.cs" />
     <Compile Include="Util\DBModelUtil.cs" />
     <Compile Include="Util\EFDbContext.cs" />
-    <Compile Include="Models\Адрес.cs" />
-    <Compile Include="Models\Банк.cs" />
-    <Compile Include="Models\Заёмщик.cs" />
-    <Compile Include="Models\Кредитная_История.cs" />
-    <Compile Include="Models\Кредитный_Договор.cs" />
+    <Compile Include="Models\Entities\Адрес.cs" />
+    <Compile Include="Models\Entities\Банк.cs" />
+    <Compile Include="Models\Entities\Заёмщик.cs" />
+    <Compile Include="Models\Entities\Кредитная_История.cs" />
+    <Compile Include="Models\Entities\Кредитный_Договор.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -240,6 +239,10 @@
     <Content Include="Views\Loan\Create.cshtml" />
     <Content Include="Views\Home\Find.cshtml" />
     <Content Include="Views\Home\Finded.cshtml" />
+    <Content Include="Views\Bank\Update.cshtml" />
+    <Content Include="Views\History\Update.cshtml" />
+    <Content Include="Views\Loan\Update.cshtml" />
+    <Content Include="Views\Borrower\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

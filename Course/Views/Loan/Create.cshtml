@@ -22,63 +22,77 @@
     <div class="inp-form shadow rounded">
         @using (Html.BeginForm())
         {
-        <fieldset>
-            <legend>Создать кредитный договор</legend>
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Сумма_Кредита)
-            </div>
-            <div class="editor-label">
-                @Html.EditorFor(model => model.Сумма_Кредита, new { htmlAttributes = new { @onkeyup = "check();", @id = "f1", @class = "form-control" }, })
-            </div>
+            @Html.ValidationSummary(true)
+            @Html.AntiForgeryToken()
+            <fieldset>
+                <legend>Создать кредитный договор</legend>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Сумма_Кредита)
+                </div>
+                <div class="editor-label">
+                    @Html.EditorFor(model => model.Сумма_Кредита, new { htmlAttributes = new { @onkeyup = "check();", @id = "f1", @class = "form-control" }, })
+                </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Дата_Заключения)
-            </div>
-            <div class="editor-label">
-                @Html.EditorFor(model => model.Дата_Заключения, new { htmlAttributes = new { @onchange = "check();", @id = "f2", @class = "form-control", @type = "date" }, })
-            </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Дата_Заключения)
+                </div>
+                <div class="editor-label">
+                    @Html.EditorFor(model => model.Дата_Заключения, new { htmlAttributes = new { @onchange = "check();", @id = "f2", @class = "form-control", @type = "date" }, })
+                </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Форм_Кредита)
-            </div>
-            <div class="editor-label">
-                @Html.EditorFor(model => model.Форм_Кредита, new { htmlAttributes = new { @onkeyup = "check();", @id = "f3", @class = "form-control" }, })
-            </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Форм_Кредита)
+                </div>
+                <div class="editor-label">
+                    @Html.EditorFor(model => model.Форм_Кредита, new { htmlAttributes = new { @onkeyup = "check();", @id = "f3", @class = "form-control" } })
+                </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Процентная_Ставка)
-            </div>
-            <div class="editor-label">
-                @Html.EditorFor(model => model.Процентная_Ставка, new { htmlAttributes = new { @onkeyup = "check();", @id = "f4", @class = "form-control", @type = "number", @step = "0.01" }, })
-            </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Процентная_Ставка)
+                </div>
+                <div class="editor-label">
+                    @Html.EditorFor(model => model.Процентная_Ставка, new { htmlAttributes = new { @onkeyup = "check();", @id = "f4", @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Процентная_Ставка)
+                </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Дата_Погашения)
-            </div>
-            <div class="editor-label">
-                @Html.EditorFor(model => model.Дата_Погашения, new { htmlAttributes = new { @onchange = "check();", @id = "f5", @class = "form-control", @type = "date" }, })
-            </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Дата_Погашения)
+                </div>
+                <div class="editor-label">
+                    @Html.EditorFor(model => model.Дата_Погашения, new { htmlAttributes = new { @onchange = "check();", @id = "f5", @class = "form-control", @type = "date" }, })
+                </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Произведена_Выплата)
-            </div>
-            <div class="editor-label">
-                @Html.EditorFor(model => model.Произведена_Выплата, new { htmlAttributes = new { @onchange = "check();", @id = "f6", @class = "form-control" }, })
-            </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Произведена_Выплата)
+                </div>
+                <div class="editor-label">
+                    @Html.EditorFor(model => model.Произведена_Выплата, new { htmlAttributes = new { @onchange = "check();", @id = "f6", @class = "form-control" }, })
+                </div>
 
-            <div class="editor-label">
-                @Html.DropDownList("BorrowersDrop", (SelectList) ViewBag.DropdownValues)
-            </div>
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Заёмщик)
+                </div>
+                <div class="editor-label">
+                    @Html.DropDownListFor(x => x.ИД_Заёмщика, (IEnumerable<SelectListItem>)ViewBag.BorrowersDrop, new { @onchange = "check();", @id = "f7", @class = "form-control" })
+                </div>
+
+                <div class="editor-label">
+                    @Html.LabelFor(model => model.Банк)
+                </div>
+                <div class="editor-label">
+                    @Html.DropDownListFor(x => x.ИД_Банка, (IEnumerable<SelectListItem>)ViewBag.BankDrop, new { @onchange = "check();", @id = "f8", @class = "form-control" })
+                </div>
 
 
-            <p>
-                <input id="createButton" type="submit" value="Create" class="btn btn-primary" disabled />
-            </p>
-        </fieldset>
+                <p>
+                    <input id="createButton" type="submit" value="Create" class="btn btn-primary" disabled />
+                </p>
+            </fieldset>
         }
     </div>
 
     <a href="../Loan/Show" class="btn btn-info">Назад</a>
+
 
 
     <script>
@@ -89,8 +103,10 @@
                 pole3 = document.getElementById('f3'),
                 pole4 = document.getElementById('f4'),
                 pole5 = document.getElementById('f5'),
-                pole6 = document.getElementById('f6');
-            document.getElementById('createButton').disabled = pole1.value && pole2.value && pole3.value && pole4.value && pole5.value && pole6.value ? false : "disabled";
+                pole6 = document.getElementById('f6'),
+                pole7 = document.getElementById('f7'),
+                pole8 = document.getElementById('f8');
+            document.getElementById('createButton').disabled = pole1.value && pole2.value && pole3.value && pole4.value && pole5.value && pole6.value && pole7.value && pole8.value ? false : "disabled";
         }
     </script>
 

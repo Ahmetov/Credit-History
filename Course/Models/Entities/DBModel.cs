@@ -19,6 +19,12 @@
         public virtual DbSet<Кредитная_История> Кредитная_История { get; set; }
         public virtual DbSet<Кредитный_Договор> Кредитный_Договор { get; set; }
 
+        public void setQuanity(int id)
+        {
+            System.Data.SqlClient.SqlParameter param = new System.Data.SqlClient.SqlParameter("@borrowerId", id);
+            var phones = Database.ExecuteSqlCommand("customProc @borrowerId", param);
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Заёмщик>()

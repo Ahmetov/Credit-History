@@ -22,7 +22,10 @@
         @using (Html.BeginForm())
         {
         <fieldset>
-            <legend>Создать заёмщика</legend>
+            <legend>Редактировать заёмщика</legend>
+            <div class="editor-field">
+                @Html.HiddenFor(model => model.заёмщик.ИД_Заёмщика)
+            </div>
             <div class="editor-label">
                 @Html.LabelFor(model => model.заёмщик.Имя)
             </div>
@@ -114,6 +117,9 @@
                             </button>
                         </div>
                         <div class="modal-body">
+                            <div class="editor-field">
+                                @Html.HiddenFor(model => model.адрес.ИД_Адреса)
+                            </div>
                             <div class="editor-label">
                                 @Html.LabelFor(model => model.адрес.Город)
                             </div>
@@ -157,13 +163,13 @@
                 </div>
             </div>
             <p>
-                <input type="submit" disabled id="createButton" value="Create" class="btn btn-primary" />
+                <input type="submit" disabled id="createButton" value="Update" class="btn btn-primary" />
             </p>
         </fieldset>
         }
     </div>
 
-    <a href="../Borrower/Show" class="btn btn-info">Назад</a>
+    <a href="../Show" class="btn btn-info">Назад</a>
 
 
     <script>

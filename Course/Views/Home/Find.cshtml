@@ -13,29 +13,20 @@
     <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #485e52">
         <div class="collapse navbar-collapse" id="navbar1">
             <ul class="nav nav-pills flex-column flex-sm-row sticky-top justify-content-around">
-                <li class="nav-item">
-                    <a class="nav-link text-sm-center flex-sm p-3 mb-2 text-white nav-bar-text-user" href="/Home/Index">Главная</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-sm-center flex-sm p-3 mb-2 text-white nav-bar-text-user" href="/Borrower/Show">Заёмщики</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-sm-center flex-sm p-3 mb-2 text-white nav-bar-text-user" href="/Bank/Show">Банки</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-sm-center flex-sm p-3 mb-2 text-white nav-bar-text-user" href="/Loan/Show">Кредитные договоры</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link text-sm-center flex-sm p-3 mb-2 text-white nav-bar-text-user" href="/History/Show">Кредитные истории</a>
-                </li>
+               
             </ul>
         </div>
     </nav>
+    <br />
+    <br />
+    <h2 class="text-center">Поиск кредитной истории по паспортным данным (Ввод серия номер слитно)</h2>
+    <br />
 
     @using (@Html.BeginForm("Find", "Home"))
-    {   
+    {
         @Html.TextBox("id", "", new { style = "width:100%" })
-        <input type="submit" value="Send" />
+        <br />
+        <input type="submit" class="btn btn-primary" value="Найти" />
     }
 
 

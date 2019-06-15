@@ -71,6 +71,8 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Одобренные_Кредиты)
                 </th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -112,6 +114,13 @@
                     {
                         @Html.AntiForgeryToken()
                         <a href="../History/Delete/@item.ИД_Кредитной_Истории" class="btn btn-danger">Удалить</a>
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="../History/Update/@item.ИД_Кредитной_Истории" class="btn btn-warning">Обновить</a>
                     }
                 </td>
             </tr>

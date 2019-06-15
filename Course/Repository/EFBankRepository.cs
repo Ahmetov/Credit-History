@@ -1,6 +1,8 @@
-﻿using Course.Util;
+﻿using Course.Models;
+using Course.Util;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Validation;
 using System.Diagnostics;
@@ -16,6 +18,16 @@ namespace Course.Repository
         public IEnumerable<Банк> GetBanks()
         {
             return dBModel.Банк;
+        }
+
+        public IEnumerable<Банк> findByName(string name)
+        {
+            if (name == null)
+                return null;
+
+            IEnumerable<Банк> банк = dBModel.Банк.Where(o => o.Название == name).Select(n => n);
+
+            return банк;
         }
 
         public bool deleteBankById(int id)
@@ -42,6 +54,20 @@ namespace Course.Repository
                 }
                 return false;
             }
+        }
+
+        public Банк findBankById(int id)
+        {
+            Банк банк = dBModel.Банк.Where(o => o.ИД_Банка == id).FirstOrDefault();
+            return банк;
+        }
+        
+        public void update (БанкАдрес банкАдрес )
+        {
+            dBModel.Entry(банкАдрес.адрес).State = EntityState.Modified;
+            dBModel.Entry(банкАдрес.банк).State = EntityState.Modified;
+            
+            dBModel.SaveChanges();
         }
 
         public void saveBank(Банк банк)

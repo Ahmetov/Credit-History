@@ -22,14 +22,40 @@ namespace Course.Controllers
         {
             БанкАдрес банкАдрес = new БанкАдрес();
 
-            //return View(new Заёмщик());
             return View(банкАдрес);
+        }
+
+        [HttpPost]
+        public ActionResult Show(string name)
+        {
+            return View(bankRepository.findByName(name));
         }
 
         [HttpPost]
         public ActionResult Create(БанкАдрес model)
         {
             bankRepository.saveBank(model.банк);
+            return Redirect("/Bank/Show");
+        }
+
+        public ActionResult Update(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Банк банк = bankRepository.findBankById(id.Value);
+            БанкАдрес банкАдрес = new БанкАдрес();
+            банкАдрес.банк = банк;
+            банкАдрес.адрес = банк.Адрес;
+            return View(банкАдрес);
+        }
+
+        [HttpPost]
+        public ActionResult Update(БанкАдрес model)
+        {
+            model.банк.ИД_Адреса = model.адрес.ИД_Адреса;
+            bankRepository.update(model);
             return Redirect("/Bank/Show");
         }
 

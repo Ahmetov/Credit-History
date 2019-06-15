@@ -41,7 +41,13 @@ namespace Course.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            return View(repositroy.findHistoryByPassport(id.Value));
+            Кредитная_История история = repositroy.findHistoryByPassport(id.Value);
+
+            if (история == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            } else
+                return View(история);
         }
 
 

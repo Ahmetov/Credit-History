@@ -20,7 +20,9 @@ namespace Course
         [StringLength(20)]
         public string Форм_Кредита { get; set; }
 
-        public float? Процентная_Ставка { get; set; }
+        [Required]
+        [Range(typeof(decimal), "0,01", "100,00", ErrorMessage = "Наименьший процент - 0,01. В качестве дроби - запятая")]
+        public decimal? Процентная_Ставка { get; set; }
 
         [Column(TypeName = "date")]
         [DataType(DataType.Date)]

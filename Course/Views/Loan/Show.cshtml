@@ -62,6 +62,12 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Произведена_Выплата)
                 </th>
+                <th>
+
+                </th>
+                <th>
+
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -94,6 +100,13 @@
                     {
                         @Html.AntiForgeryToken()
                         <a href="../Loan/Delete/@item.ИД_Договора" class="btn btn-danger">Удалить</a>
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="../Loan/Update/@item.ИД_Договора" class="btn btn-warning">Обновить</a>
                     }
                 </td>
             </tr>

@@ -24,6 +24,9 @@
         {
         <fieldset>
             <legend>Создать кредитную историю</legend>
+            <div class="editor-field">
+                @Html.HiddenFor(model => model.ИД_Кредитной_Истории)
+            </div>
             <div class="editor-label">
                 @Html.LabelFor(model => model.Количество_Счетов)
             </div>
@@ -87,11 +90,6 @@
                 @Html.EditorFor(model => model.Одобренные_Кредиты, new { htmlAttributes = new { @onkeyup = "check();", @id = "f9", @class = "form-control" }, })
             </div>
 
-            <div class="editor-label">
-                @Html.LabelFor(model => model.Заёмщик)
-            </div>
-            
-
             <p>
                 <input disabled id="createButton" type="submit" value="Create" class="btn btn-primary" />
             </p>
@@ -99,7 +97,7 @@
         }
     </div>
 
-    <a href="../History/Show" class="btn btn-info">Назад</a>
+    <a href="../Show" class="btn btn-info">Назад</a>
 
     <script>
         function check() {

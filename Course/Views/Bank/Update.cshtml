@@ -19,13 +19,14 @@
 </head>
 <body>
 
-
-
     <div class="inp-form shadow rounded">
         @using (Html.BeginForm())
         {
             <fieldset>
-                <legend>Создать банк</legend>
+                <legend>Редактировать банк</legend>
+                <div class="editor-field">
+                    @Html.HiddenFor(model => model.банк.ИД_Банка)
+                </div>
                 <div class="editor-label">
                     @Html.LabelFor(model => model.банк.Название)
                 </div>
@@ -92,13 +93,13 @@
                     </div>
                 </div>
                 <div style="margin-top: 10px; margin-bottom: 10px;">
-                    <button type="submit" disabled id="createButton" value="Create" class="btn btn-primary btn-lg">Создать</button>
+                    <button type="submit" disabled id="createButton" value="Update" class="btn btn-primary btn-lg">Создать</button>
                 </div>
             </fieldset>
         }
     </div>
 
-    <a href="../Bank/Show" class="btn btn-info">Назад</a>
+    <a href="../Show" class="btn btn-info">Назад</a>
 
     <script>
         function check() {
@@ -112,6 +113,8 @@
             document.getElementById('createButton').disabled = pole1.value && pole2.value && pole3.value && pole4.value && pole5.value && pole6.value ? false : "disabled";
         }
     </script>
+
+
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
