@@ -50,6 +50,9 @@
                                 </button>
                             </div>
                             <div class="modal-body">
+                                <div class="editor-field">
+                                    @Html.HiddenFor(model => model.адрес.ИД_Адреса)
+                                </div>
                                 <div class="editor-label">
                                     @Html.LabelFor(model => model.адрес.Город)
                                 </div>

@@ -38,6 +38,18 @@
     <h1 class="text-center">Таблица "Кредитные договоры"</h1>
     <br />
 
+    @using (@Html.BeginForm("Show", "Loan"))
+    {
+        <div>
+            Фильтрация по id договора
+            @Html.TextBox("id", "", new { style = "width:70%" })
+        </div>
+        <input type="submit" class="btn btn-primary" value="Найти" />
+        <a href="../Loan/Show" class="btn btn-primary">Показать все</a>
+    }
+
+    <br />
+
     <table class="table">
         <thead>
             <tr>
@@ -61,6 +73,12 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Произведена_Выплата)
+                </th>
+                <th>
+                    Заёмщик
+                </th>
+                <th>
+                    Банк
                 </th>
                 <th>
 
@@ -94,6 +112,12 @@
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.Произведена_Выплата)
+                </td>
+                <td>
+                    @item.Заёмщик
+                </td>
+                <td>
+                    @item.Банк
                 </td>
                 <td>
                     @using (Html.BeginForm())

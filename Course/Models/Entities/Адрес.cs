@@ -35,5 +35,14 @@ namespace Course
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Заёмщик> Заёмщик { get; set; }
+
+        public override string ToString()
+        {
+            return "Город: " + Город + "\n" +
+                   "Улица: " + Улица + "\n" +
+                   "Номер улицы: " + Номер_Улицы + "\n" +
+                   "Квартира: " + Квартира + "\n" +
+                   "Индекс: " + Индекс;
+        }
     }
 }

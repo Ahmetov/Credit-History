@@ -38,6 +38,16 @@
     <h1 class="text-center">Таблица "Заёмщики"</h1>
     <br />
 
+    @using (@Html.BeginForm("Show", "Borrower"))
+    {
+        <div>
+            Поиск по фамилия заёмщика
+            @Html.TextBox("name", "", new { style = "width:70%" })
+        </div>
+        <input type="submit" class="btn btn-primary" value="Найти" />
+        <a href="../Borrower/Show" class="btn btn-primary">Показать все</a>
+    }
+
     <table class="table">
         <thead>
             <tr>
@@ -78,7 +88,7 @@
                     ИД Кредитной истории
                 </th>
                 <th>
-
+                    Адрес
                 </th>
                 <th>
 
@@ -125,6 +135,9 @@
                 <th>
                     @item.ИД_Кредитной_Истории
                 </th>
+                <td>
+                    @item.Адрес
+                </td>
                 <td>
                     @using (Html.BeginForm())
                     {

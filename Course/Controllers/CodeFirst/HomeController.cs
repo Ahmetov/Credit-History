@@ -1,9 +1,5 @@
 ﻿using Course.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Course.Controllers
@@ -24,17 +20,22 @@ namespace Course.Controllers
         }
 
         [HttpPost]
-        public ActionResult Find(int? id)
+        public ActionResult Find(long? id)
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return Redirect("/Home/ErrorMessage/");
             }
 
             return Redirect("/Home/Finded/" + id);
         }
 
-        public ActionResult Finded(int? id)
+        public ActionResult ErrorMessage()
+        {
+            return View();
+        }
+
+        public ActionResult Finded(long? id)
         {
             if (id == null)
             {

@@ -38,6 +38,19 @@
     <h1 class="text-center">Таблица "Кредитные истории"</h1>
     <br />
 
+    @using (@Html.BeginForm("Show", "History"))
+    {
+        <div>
+            Фильтрация по id
+            @Html.TextBox("id", "", new { style = "width:70%" })
+        </div>
+        <input type="submit" class="btn btn-primary" value="Найти" />
+        <a href="../History/Show" class="btn btn-primary">Показать все</a>
+    }
+
+    <br />
+    <br />
+
     <table class="table">
         <thead>
             <tr>
@@ -70,6 +83,9 @@
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.Одобренные_Кредиты)
+                </th>
+                <th>
+                    Заёмщик
                 </th>
                 <th></th>
                 <th></th>
@@ -109,6 +125,9 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.Одобренные_Кредиты)
                 </td>
+                <th>
+                    @item.Заёмщик.FirstOrDefault()
+                </th>
                 <td>
                     @using (Html.BeginForm())
                     {

@@ -175,13 +175,11 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Repository\EFBankRepository.cs" />
-    <Compile Include="Repository\EFBorrowerRepository.cs" />
+    <Compile Include="Dao\EFBankRepository.cs" />
+    <Compile Include="Dao\EFBorrowerRepository.cs" />
     <Compile Include="Models\Entities\sysdiagrams.cs" />
-    <Compile Include="Repository\EFHistoryRepositroy.cs" />
-    <Compile Include="Repository\EFLoanRepository.cs" />
-    <Compile Include="Util\DBModelUtil.cs" />
-    <Compile Include="Util\EFDbContext.cs" />
+    <Compile Include="Dao\EFHistoryRepositroy.cs" />
+    <Compile Include="Dao\EFLoanRepository.cs" />
     <Compile Include="Models\Entities\Адрес.cs" />
     <Compile Include="Models\Entities\Банк.cs" />
     <Compile Include="Models\Entities\Заёмщик.cs" />
@@ -243,10 +241,9 @@
     <Content Include="Views\History\Update.cshtml" />
     <Content Include="Views\Loan\Update.cshtml" />
     <Content Include="Views\Borrower\Update.cshtml" />
+    <Content Include="Views\Home\ErrorMessage.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

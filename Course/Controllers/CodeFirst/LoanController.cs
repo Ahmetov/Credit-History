@@ -27,12 +27,22 @@ namespace Course.Controllers
             return View(loanRepository.GetLoans());
         }
 
+        [HttpPost]
+        public ActionResult Show(int? id)
+        {
+            if (id != null)
+            {
+                return View(loanRepository.findLoanById(id.Value));
+            }
+
+            return Redirect("/History/Show");
+            
+        }
+
         public ActionResult Create()
         {
             DropDownBorrower dropDown = new DropDownBorrower();
-
             List<SelectListItem> listItems = new List<SelectListItem>();
-
             Кредитный_Договор договор = new Кредитный_Договор();
             ViewBag.BorrowersDrop = borrowerRepository.GetBorrowers().Select(x => new SelectListItem { Text = (x.ИД_Заёмщика.ToString() + " " + x.Имя + " " + x.Фамилия), Value = x.ИД_Заёмщика.ToString()});
             ViewBag.BankDrop = bankRepository.GetBanks().Select(x => new SelectListItem { Text = (x.ИД_Банка.ToString() + " " + x.Название.ToString()), Value = x.ИД_Банка.ToString()});
@@ -43,6 +53,11 @@ namespace Course.Controllers
         [HttpPost]
         public ActionResult Create(Кредитный_Договор model)
         {
+            if (!ModelState.IsValid)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             loanRepository.saveLoan(model);
 
             return Redirect("/Loan/Show");
@@ -58,7 +73,7 @@ namespace Course.Controllers
             ViewBag.BorrowersDrop = borrowerRepository.GetBorrowers().Select(x => new SelectListItem { Text = (x.ИД_Заёмщика.ToString() + " " + x.Имя + " " + x.Фамилия), Value = x.ИД_Заёмщика.ToString() });
             ViewBag.BankDrop = bankRepository.GetBanks().Select(x => new SelectListItem { Text = (x.ИД_Банка.ToString() + " " + x.Название.ToString()), Value = x.ИД_Банка.ToString() });
 
-            Кредитный_Договор договор = loanRepository.findLoanById(id.Value);
+            Кредитный_Договор договор = loanRepository.findLoanById(id.Value).FirstOrDefault();
             
             return View(договор);
         }
@@ -66,6 +81,11 @@ namespace Course.Controllers
         [HttpPost]
         public ActionResult Update(Кредитный_Договор model)
         {
+            if (!ModelState.IsValid)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             loanRepository.update(model);
             return Redirect("/Loan/Show");
         }
@@ -85,12 +105,5 @@ namespace Course.Controllers
             return RedirectToAction("/Show");
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)//int id)
-        {
-            loanRepository.deleteLoanById(id);
-            return Redirect("/Show");
-        }
     }
 }

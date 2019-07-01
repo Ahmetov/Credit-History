@@ -1,10 +1,6 @@
 ﻿using Course.Models;
 using Course.Repository;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Course.Controllers
@@ -34,6 +30,11 @@ namespace Course.Controllers
         [HttpPost]
         public ActionResult Create(БанкАдрес model)
         {
+            if (!ModelState.IsValid)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             bankRepository.saveBank(model.банк);
             return Redirect("/Bank/Show");
         }
@@ -54,10 +55,17 @@ namespace Course.Controllers
         [HttpPost]
         public ActionResult Update(БанкАдрес model)
         {
+            if (!ModelState.IsValid)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             model.банк.ИД_Адреса = model.адрес.ИД_Адреса;
             bankRepository.update(model);
             return Redirect("/Bank/Show");
         }
+
+
 
         public ActionResult Delete(int? id)
         {
@@ -75,13 +83,7 @@ namespace Course.Controllers
         }
 
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)//int id)
-        {
-            bankRepository.deleteBankById(id);
-            return Redirect("/Bank/Show");
-        }
+    
 
 
     }

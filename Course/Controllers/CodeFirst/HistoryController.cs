@@ -1,9 +1,6 @@
 ﻿using Course.Repository;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Course.Controllers
@@ -17,14 +14,25 @@ namespace Course.Controllers
         public ActionResult Create()
         {
             Кредитная_История история = new Кредитная_История();
-            ViewBag.BorrowersDrop = borrowerRepository.GetBorrowers().Select(x => new SelectListItem { Text = (x.ИД_Заёмщика.ToString() + " " + x.Имя + " " + x.Фамилия), Value = x.ИД_Заёмщика.ToString() });
+            история.Количество_Заявок = 0;
 
             return View(история);
         }
 
         public ActionResult Show()
         {
-            return View(repository.GetHistories());
+            return View(repository.GetAllHistories());
+        }
+
+        [HttpPost]
+        public ActionResult Show(int? id)
+        {
+            if( id != null)
+            {
+                return View(repository.findHistoryById(id.Value));
+            }
+
+            return Redirect("/History/Show");
         }
 
         public ActionResult Update(int? id)
@@ -34,9 +42,7 @@ namespace Course.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
 
-            //ViewBag.BorrowersDrop = borrowerRepository.GetBorrowers().Select(x => new SelectListItem { Text = (x.ИД_Заёмщика.ToString() + " " + x.Имя + " " + x.Фамилия), Value = x.ИД_Заёмщика.ToString() });
-
-            Кредитная_История история = repository.findHistoryById(id.Value);
+            Кредитная_История история = repository.findHistoryById(id.Value).FirstOrDefault();
             
             return View(история);
         }
@@ -44,13 +50,23 @@ namespace Course.Controllers
         [HttpPost]
         public ActionResult Update(Кредитная_История model)
         {
+            if (!ModelState.IsValid)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             repository.update(model);
-            return Redirect("/Loan/Show");
+            return Redirect("/History/Show");
         }
 
         [HttpPost]
         public ActionResult Create(Кредитная_История model)
         {
+            if (!ModelState.IsValid)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             repository.saveHistory(model);
 
             return Redirect("/History/Show");
@@ -71,12 +87,6 @@ namespace Course.Controllers
             return RedirectToAction("/Show");
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)//int id)
-        {
-            repository.deleteHistoryById(id);
-            return Redirect("/Show");
-        }
+
     }
 }

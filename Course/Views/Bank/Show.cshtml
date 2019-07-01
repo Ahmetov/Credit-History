@@ -59,6 +59,9 @@
                     @Html.DisplayNameFor(model => model.Название)
                 </th>
                 <th>
+                    Адрес
+                </th>
+                <th>
 
                 </th>
                 <th>
@@ -69,28 +72,31 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr>
-                    <th scope="row">
-                        <span>@item.ИД_Банка</span>
-                    </th>
-                    <td>
-                        <span>@item.Название</span>
-                    </td>
-                    <td>
-                        @using (Html.BeginForm())
-                        {
-                            @Html.AntiForgeryToken()
-                            <a href="../Bank/Delete/@item.ИД_Банка" class="btn btn-danger">Удалить</a>
-                        }
-                    </td>
-                    <td>
-                        @using (Html.BeginForm())
-                        {
-                            @Html.AntiForgeryToken()
-                            <a href="../Bank/Update/@item.ИД_Банка" class="btn btn-warning">Обновить</a>
-                        }
-                    </td>
-                </tr>
+            <tr>
+                <th scope="row">
+                    <span>@item.ИД_Банка</span>
+                </th>
+                <td>
+                    <span>@item.Название</span>
+                </td>
+                <td>
+                    @item.Адрес
+                </td>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="../Bank/Delete/@item.ИД_Банка" class="btn btn-danger">Удалить</a>
+                    }
+                </td>
+                <td>
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+                        <a href="../Bank/Update/@item.ИД_Банка" class="btn btn-warning">Обновить</a>
+                    }
+                </td>
+            </tr>
             }
         </tbody>
     </table>

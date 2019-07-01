@@ -1,10 +1,8 @@
 ﻿using Course.Models;
 using Course.Repository;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Course.Controllers
@@ -19,6 +17,15 @@ namespace Course.Controllers
             return View(borrowerRepository.GetBorrowers());
         }
 
+        [HttpPost]
+        public ActionResult Show(string name)
+        {
+            DBModel db = borrowerRepository.getModel();
+            IEnumerable<Заёмщик> заёмщики = db.Заёмщик.Where(x => x.Фамилия.Contains(name));
+
+            return View(заёмщики);
+        }
+
         public ActionResult Create()
         {
             ЗаёмщикАдрес заёмщикАдрес =  new ЗаёмщикАдрес();
@@ -29,9 +36,16 @@ namespace Course.Controllers
         [HttpPost]
         public ActionResult Create(ЗаёмщикАдрес model)
         {
+            if ( !ModelState.IsValid )
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             borrowerRepository.saveBorrower(model.заёмщик);
             return Redirect("/Borrower/Show");
         }
+
+
 
         public ActionResult Delete(int? id)
         {
@@ -68,17 +82,16 @@ namespace Course.Controllers
         [HttpPost]
         public ActionResult Update(ЗаёмщикАдрес model)
         {
+            if (!ModelState.IsValid)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
             model.заёмщик.ИД_Адреса = model.адрес.ИД_Адреса;
             borrowerRepository.update(model);
             return Redirect("/Borrower/Show");
         }
 
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
-        {
-            borrowerRepository.deleteBorrowerById(id);
-            return Redirect("/Borrower/Show");
-        }
+
     }
 }
